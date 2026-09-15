@@ -8,7 +8,6 @@
     --pearl:#E5E5E5;
     --rose-gold:#D28C64;
     --ocean:#8094E6;
-    --ocean-deep:#6473C9;
     --sunrise:#FF7366;
     --seafoam:#6BCABA;
     --white:#FFFFFF;
@@ -245,10 +244,7 @@
   .trend-area{fill:var(--rose-gold);opacity:0.16;}
   .trend-dot{fill:var(--rose-gold);stroke:var(--paper);stroke-width:2;}
   .peak-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;fill:var(--indigo);}
-  .giveaway-guide{stroke:var(--ocean);stroke-width:1;stroke-dasharray:3 4;opacity:0.7;}
-  .giveaway-tag{font-size:9.5px;fill:var(--ocean-deep);font-family:'JetBrains Mono',monospace;}
   .spark-bar{fill:var(--ocean);}
-  .spark-bar.is-campaign{fill:var(--rose-gold);}
 
   /* ===== conversion section ===== */
   #conversion{
@@ -325,23 +321,8 @@
   .class-row .cnum{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.3rem;color:var(--indigo);width:64px;text-align:right;}
 
   .stack-card{padding:34px clamp(18px,4vw,40px) 30px;}
-  .stack-wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(10px,3vw,32px);height:260px;margin-top:10px;padding:0 4px;}
-  .stack-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;cursor:pointer;}
-  .stack-bar{width:100%;max-width:76px;display:flex;flex-direction:column-reverse;border-radius:10px 10px 6px 6px;overflow:hidden;box-shadow:0 14px 30px -14px rgba(21,23,53,0.35);transition:transform .35s cubic-bezier(.2,.8,.2,1);}
-  .stack-col:hover .stack-bar{transform:translateY(-6px) scale(1.04);}
-  .seg{width:100%;transform-origin:bottom;}
-  .seg.a{background:var(--ocean);}
-  .seg.b{background:var(--seafoam);}
-  .seg.c{background:var(--sunrise);}
-  .stack-date{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--ink-soft);}
-  .stack-total{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:var(--indigo);margin-top:2px;}
-  .stack-tooltip{
-    position:absolute;pointer-events:none;opacity:0;transform:translateY(6px);
-    background:var(--deep-blue);color:#fff;padding:10px 13px;border-radius:10px;font-size:0.76rem;
-    font-family:'JetBrains Mono',monospace;line-height:1.5;box-shadow:0 16px 30px -12px rgba(11,14,51,0.5);
-    transition:opacity .2s ease, transform .2s ease;white-space:nowrap;z-index:10;
-  }
-  .stack-tooltip.show{opacity:1;transform:translateY(0);}
+  .dist-bar-track{display:flex;width:100%;height:52px;border-radius:14px;overflow:hidden;margin-top:22px;box-shadow:0 14px 30px -14px rgba(21,23,53,0.35);}
+  .dist-bar-seg{height:100%;width:0%;flex:none;}
 
   /* ===== social section ===== */
   #social{
@@ -649,7 +630,6 @@
         <h3>Daily lead trend &middot; dated leads, 3&ndash;29 Aug 2026</h3>
         <div class="chart-legend">
           <span><i style="background:var(--rose-gold)"></i>Leads captured</span>
-          <span><i style="background:var(--ocean);border-radius:50%;width:6px;height:6px"></i>Giveaway day</span>
         </div>
       </div>
       <div id="trend-chart"></div>
@@ -715,7 +695,7 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow" style="color:var(--rose-gold)">Sahel Giveaways</span>
-      <h2>936 giveaways, distributed across four beach days.</h2>
+      <h2>936 giveaways, distributed across the campaign month.</h2>
     </div>
 
     <div class="campaign-top">
@@ -745,17 +725,20 @@
       </div>
     </div>
 
-    <div class="stack-card glass" style="position:relative">
+    <div class="stack-card glass">
       <div class="chart-top">
-        <h3>Giveaways by class, per distribution day</h3>
+        <h3>Giveaways by class</h3>
         <div class="chart-legend">
-          <span><i style="background:var(--ocean)"></i>Class A</span>
-          <span><i style="background:var(--seafoam)"></i>Class B</span>
-          <span><i style="background:var(--sunrise)"></i>Class C</span>
+          <span><i style="background:var(--ocean)"></i>Class A &middot; 13.8%</span>
+          <span><i style="background:var(--seafoam)"></i>Class B &middot; 27.5%</span>
+          <span><i style="background:var(--sunrise)"></i>Class C &middot; 58.8%</span>
         </div>
       </div>
-      <div class="stack-wrap" id="stack-wrap"></div>
-      <div class="stack-tooltip" id="stack-tooltip"></div>
+      <div class="dist-bar-track" id="dist-bar-track">
+        <div class="dist-bar-seg" data-target="13.8" style="background:var(--ocean)"></div>
+        <div class="dist-bar-seg" data-target="27.5" style="background:var(--seafoam)"></div>
+        <div class="dist-bar-seg" data-target="58.8" style="background:var(--sunrise)"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -804,10 +787,6 @@
     <div class="chart-card glass">
       <div class="chart-top">
         <h3>Daily search interest &middot; &ldquo;GIG&rdquo;, 31 Jul&ndash;31 Aug 2026</h3>
-        <div class="chart-legend">
-          <span><i style="background:var(--rose-gold)"></i>Giveaway-day spike</span>
-          <span><i style="background:var(--ocean)"></i>Other days</span>
-        </div>
       </div>
       <div id="search-chart"></div>
     </div>
@@ -845,7 +824,7 @@
     <div class="findings">
       <div class="finding">
         <span class="fnum">01</span>
-        <p>August giveaways totaled <b>936</b> across four distributions &mdash; <b>04 Aug</b> was highest at <b>393</b>, and <b>17 Aug</b> was lowest at <b>150</b>.</p>
+        <p>August giveaways totaled <b>936</b> across the campaign month, split <b>58.8%</b> Class C, <b>27.5%</b> Class B, and <b>13.8%</b> Class A.</p>
       </div>
       <div class="finding">
         <span class="fnum">02</span>
@@ -861,7 +840,7 @@
       </div>
       <div class="finding">
         <span class="fnum">05</span>
-        <p>Brand search peaked at <b>84</b> on <b>4 Aug</b> and <b>100</b> on <b>24 Aug</b> &mdash; both giveaway days &mdash; with <b>Alexandria Governorate</b>, gateway to the North Coast, leading nationwide search interest.</p>
+        <p>Brand search peaked at <b>84</b> on <b>4 Aug</b> and <b>100</b> on <b>24 Aug</b>, with <b>Alexandria Governorate</b>, gateway to the North Coast, leading nationwide search interest.</p>
       </div>
     </div>
 
@@ -886,16 +865,6 @@ var trend = [
   ["Aug 17",1],["Aug 18",2],["Aug 19",3],["Aug 20",2],["Aug 21",3],["Aug 22",15],["Aug 23",37],
   ["Aug 24",12],["Aug 25",17],["Aug 26",9],["Aug 27",1],["Aug 28",6],["Aug 29",7]
 ];
-var giveawayDays = ["Aug 4","Aug 12","Aug 17","Aug 24"];
-var giveawayGuideIdx = trend.map(function(t){return giveawayDays.indexOf(t[0]) > -1;});
-
-var stacks = [
-  {d:"04 Aug", a:0,  b:113, c:280, total:393},
-  {d:"12 Aug", a:54, b:47,  c:74,  total:175},
-  {d:"17 Aug", a:37, b:38,  c:75,  total:150},
-  {d:"24 Aug", a:38, b:59,  c:121, total:218}
-];
-
 /* Google Trends — search interest for "gig", Egypt, normalized 0-100 */
 var searchTrend = [
   ["Jul 31",0],["Aug 1",0],["Aug 2",0],["Aug 3",78],["Aug 4",84],["Aug 5",0],["Aug 6",0],["Aug 7",0],
@@ -1032,11 +1001,6 @@ document.querySelectorAll('.kpi-tile, .conv-tile').forEach(function(card){
     return '<text class="axis-label" text-anchor="middle" x="'+x(i).toFixed(2)+'" y="'+(H-10)+'">'+trend[i][0]+'</text>';
   }).join('');
 
-  var guides = trend.map(function(pt,i){
-    if (!giveawayGuideIdx[i]) return '';
-    return '<line class="giveaway-guide" x1="'+x(i).toFixed(2)+'" x2="'+x(i).toFixed(2)+'" y1="'+padT+'" y2="'+(H-padB)+'"></line>';
-  }).join('');
-
   var peakIdx = trend.reduce(function(best,pt,i){ return pt[1] > trend[best][1] ? i : best; }, 0);
   var dots = trend.map(function(pt,i){
     var r = i===peakIdx ? 5 : 3;
@@ -1048,7 +1012,7 @@ document.querySelectorAll('.kpi-tile, .conv-tile').forEach(function(card){
 
   host.innerHTML =
     '<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="overflow:visible;display:block">' +
-      gridLines + guides +
+      gridLines +
       '<path class="trend-area" d="'+areaD+'" id="areaPath"></path>' +
       '<path class="trend-line" d="'+pathD+'" id="linePath"></path>' +
       dots + peakLabel + xLabels +
@@ -1072,48 +1036,20 @@ document.querySelectorAll('.kpi-tile, .conv-tile').forEach(function(card){
   });
 })();
 
-/* ================= giveaway stacked bars ================= */
+/* ================= giveaway class proportion bar ================= */
 (function(){
-  var wrap = document.getElementById('stack-wrap');
-  var tooltip = document.getElementById('stack-tooltip');
-  var maxTotal = Math.max.apply(null, stacks.map(function(s){return s.total;}));
-  var maxHeight = 220;
-
-  stacks.forEach(function(s){
-    var scale = s.total / maxTotal;
-    var barH = Math.max(24, maxHeight * scale);
-    var col = document.createElement('div');
-    col.className = 'stack-col';
-    col.innerHTML =
-      '<div class="stack-total">'+s.total+'</div>' +
-      '<div class="stack-bar" style="height:'+barH+'px">' +
-        '<div class="seg c" style="height:'+(barH*s.c/s.total)+'px"></div>' +
-        '<div class="seg b" style="height:'+(barH*s.b/s.total)+'px"></div>' +
-        '<div class="seg a" style="height:'+(barH*s.a/s.total)+'px"></div>' +
-      '</div>' +
-      '<div class="stack-date">'+s.d+'</div>';
-    col.addEventListener('mouseenter', function(e){
-      tooltip.innerHTML = '<b>'+s.d+'</b><br>Class A &middot; '+s.a+'<br>Class B &middot; '+s.b+'<br>Class C &middot; '+s.c+'<br>Total &middot; '+s.total;
-      tooltip.classList.add('show');
-    });
-    col.addEventListener('mousemove', function(e){
-      var host = wrap.closest('.stack-card').getBoundingClientRect();
-      tooltip.style.left = (e.clientX - host.left + 16) + 'px';
-      tooltip.style.top = (e.clientY - host.top - 10) + 'px';
-    });
-    col.addEventListener('mouseleave', function(){ tooltip.classList.remove('show'); });
-    wrap.appendChild(col);
-
-    var segs = col.querySelectorAll('.seg');
-    gsap.set(segs, {scaleY:0});
-    gsap.set(col.querySelector('.stack-bar'), {opacity:1});
-    ScrollTrigger.create({
-      trigger: col, start:'top 90%', once:true,
-      onEnter:function(){
-        if (reduceMotion){ gsap.set(segs, {scaleY:1}); return; }
-        gsap.to(segs, {scaleY:1, duration:0.9, ease:'power3.out', stagger:0.08});
-      }
-    });
+  var track = document.getElementById('dist-bar-track');
+  if (!track) return;
+  var segs = track.querySelectorAll('.dist-bar-seg');
+  ScrollTrigger.create({
+    trigger: track, start:'top 88%', once:true,
+    onEnter:function(){
+      segs.forEach(function(seg, i){
+        var target = seg.getAttribute('data-target') + '%';
+        if (reduceMotion){ seg.style.width = target; return; }
+        gsap.to(seg, {width: target, duration:1, ease:'power3.out', delay:i*0.12});
+      });
+    }
   });
 })();
 
@@ -1143,10 +1079,8 @@ document.querySelectorAll('.kpi-tile, .conv-tile').forEach(function(card){
   }).join('');
 
   var bars = searchTrend.map(function(pt,i){
-    var isCampaignDay = giveawayDays.indexOf(pt[0]) > -1;
     var h = innerH * pt[1]/maxV;
-    var cls = 'spark-bar' + (isCampaignDay && pt[1] > 0 ? ' is-campaign' : '');
-    return '<rect class="'+cls+'" x="'+x(i).toFixed(2)+'" y="'+y(pt[1]).toFixed(2)+'" width="'+Math.max(barW,1).toFixed(2)+'" height="'+Math.max(h,0).toFixed(2)+'" rx="2" data-i="'+i+'"></rect>';
+    return '<rect class="spark-bar" x="'+x(i).toFixed(2)+'" y="'+y(pt[1]).toFixed(2)+'" width="'+Math.max(barW,1).toFixed(2)+'" height="'+Math.max(h,0).toFixed(2)+'" rx="2" data-i="'+i+'"></rect>';
   }).join('');
 
   var peakIdx = searchTrend.reduce(function(best,pt,i){ return pt[1] > searchTrend[best][1] ? i : best; }, 0);
