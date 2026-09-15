@@ -271,6 +271,12 @@
   .conv-tile .lbl{margin-top:10px;color:rgba(255,255,255,0.85);}
   .timeline-card{margin-top:28px;padding:30px 34px;}
   .timeline-card h3{color:#fff;font-size:1rem;margin-bottom:22px;font-weight:600;letter-spacing:0.01em;}
+  .ptype-list{display:flex;flex-direction:column;}
+  .ptype-row{display:flex;align-items:center;gap:14px;padding:12px 0;}
+  .ptype-row + .ptype-row{border-top:1px solid rgba(255,255,255,0.14);}
+  .ptype-swatch{width:12px;height:12px;border-radius:4px;flex:none;}
+  .ptype-name{font-weight:600;color:#fff;flex:1;}
+  .ptype-count{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;width:36px;text-align:right;}
   .data-note{
     margin:20px 0 0;
     padding:16px 20px;
@@ -389,6 +395,88 @@
   .egmap-label{font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--ink);}
   .egmap-rank{font-family:'JetBrains Mono',monospace;font-size:9px;fill:var(--ink-soft);}
 
+  /* ===== route section ===== */
+  #route{
+    background:linear-gradient(135deg,var(--deep-blue) 0%,var(--indigo) 100%);
+    color:#fff;position:relative;
+  }
+  #route .section-head h2{color:#fff;}
+
+  /* ---- little van sprite that drives along the route line on scroll ---- */
+  .van-marker{
+    position:absolute;top:9px;left:0%;
+    width:74px;height:auto;
+    transform:translate(-50%,-62%);
+    z-index:4;
+    filter:drop-shadow(0 7px 8px rgba(8,3,38,0.5));
+    animation:van-bounce 0.7s ease-in-out infinite;
+  }
+  .van-marker img{display:block;width:100%;height:auto;}
+  @keyframes van-bounce{ 0%,100%{ transform:translate(-50%,-62%) rotate(0deg); } 50%{ transform:translate(-50%,-72%) rotate(-1.2deg); } }
+  @media (max-width:720px){ .van-marker{ display:none; } }
+
+  /* ---- matching van riding the top scroll-progress rail ---- */
+  #progress-rail{overflow:visible !important;}
+  #nav-van{
+    position:absolute;top:50%;left:0%;
+    width:34px;height:auto;
+    transform:translate(-50%,-55%);
+    filter:drop-shadow(0 3px 4px rgba(8,3,38,0.55));
+    pointer-events:none;
+  }
+  #nav-van img{display:block;width:100%;height:auto;}
+  @media (max-width:640px){ #nav-van{display:none;} }
+
+  /* ===== media coverage section ===== */
+  #media{
+    background:linear-gradient(135deg,var(--deep-blue) 0%,var(--indigo) 100%);
+    color:#fff;position:relative;overflow:hidden;
+  }
+  #media .section-head h2{color:#fff;}
+  .media-video-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:860px){ .media-video-row{grid-template-columns:1fr;} }
+  .media-feature{padding:18px;overflow:hidden;}
+  .media-feature .flabel{
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--rose-gold);margin-bottom:12px;display:block;
+  }
+  .media-video{width:100%;display:block;border-radius:12px;background:#000;height:280px;object-fit:cover;}
+  @media (max-width:860px){ .media-video{height:420px;} }
+
+  /* ---- modern photo carousel ---- */
+  .carousel-wrap{position:relative;margin-top:28px;}
+  .media-carousel{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 4px 10px;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;
+  }
+  .media-carousel::-webkit-scrollbar{display:none;}
+  .media-carousel .media-tile{flex:0 0 auto;width:min(72vw,300px);scroll-snap-align:start;}
+  .media-tile{aspect-ratio:3/4;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);position:relative;}
+  .media-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+  .media-tile:hover img{transform:scale(1.07);}
+  .carousel-arrow{
+    position:absolute;top:calc(50% - 26px);width:44px;height:44px;border-radius:50%;
+    background:rgba(15,8,46,0.5);border:1px solid rgba(255,255,255,0.28);
+    backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;cursor:pointer;
+    transition:background .25s ease, border-color .25s ease, transform .25s ease;z-index:5;
+  }
+  .carousel-arrow:hover{background:rgba(210,140,100,0.3);border-color:var(--rose-gold);transform:translateY(-2px);}
+  .carousel-arrow.prev{left:-10px;} .carousel-arrow.next{right:-10px;}
+  .carousel-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  @media (max-width:640px){ .carousel-arrow{display:none;} }
+  .carousel-progress{height:3px;border-radius:2px;background:rgba(255,255,255,0.15);margin-top:18px;max-width:220px;overflow:hidden;}
+  .carousel-progress-fill{height:100%;width:22%;background:var(--rose-gold);border-radius:2px;}
+
+  .media-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .media-link{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    color:#fff;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.22);
+    padding:10px 16px;border-radius:30px;text-decoration:none;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  .media-link:hover{background:rgba(210,140,100,0.18);border-color:var(--rose-gold);}
+
   /* ===== closing ===== */
   #closing{
     background:linear-gradient(135deg,var(--deep-blue) 0%,var(--indigo) 100%);
@@ -424,6 +512,21 @@
   footer .credit{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;color:rgba(255,255,255,0.55);text-transform:uppercase;}
 
   ::selection{background:var(--rose-gold);color:#fff;}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important;}
+    #topnav{position:static !important;box-shadow:none !important;}
+    #progress-rail,#hero-particles,#closing-particles,.scrollcue{display:none !important;}
+    #hero{min-height:auto;padding-bottom:20px;}
+    section{break-before:page;}
+    #hero{break-before:auto;}
+    .glass,.brand-glass,.kpi-tile,.conv-tile,.social-card,.region-row,.finding,.stack-card,.chart-card,.timeline-card,.data-note,.demand-grid > *,.media-feature,.media-tile,.t-point{break-inside:avoid;}
+    .media-carousel{display:grid !important;grid-template-columns:repeat(3,1fr);overflow:visible !important;}
+    .media-carousel .media-tile{width:auto !important;}
+    .carousel-arrow,.carousel-progress{display:none !important;}
+    .media-video{display:none;}
+    .van-marker{display:none;}
+  }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -435,11 +538,11 @@
     <img src="assets/logo-white.png" alt="GIG Egypt">
     <span class="tag">Summer Campaign 2026</span>
   </div>
-  <div id="progress-rail"><div id="progress-fill"></div></div>
+  <div id="progress-rail"><div id="progress-fill"></div><div id="nav-van"><img src="assets/van3d/side-en.png" alt=""></div></div>
 </nav>
 
 <section id="hero">
-  <div id="hero-media"><img src="assets/van.jpg" alt="GIG Egypt branded van at the Sahel summer activation"></div>
+  <div id="hero-media"><img src="assets/van.jpg" alt="GIG Egypt branded van at the Mobibus activation"></div>
   <canvas id="hero-particles"></canvas>
   <div class="wrap hero-inner">
     <div class="eyebrow hero-eyebrow">GIG Egypt &middot; Summer Campaign 2026</div>
@@ -449,11 +552,78 @@
   </div>
 </section>
 
+<section id="route" class="section-pad light-on-dark">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--rose-gold)">The Route</span>
+      <h2>Four stops along the North Coast.</h2>
+      <div class="brand-bar"></div>
+    </div>
+
+    <div class="timeline-card brand-glass">
+      <h3>Mobibus route</h3>
+      <div class="timeline" id="route-timeline">
+        <div class="t-point"><div class="td">Stop 1</div><div class="tv">Marina 4</div></div>
+        <div class="t-point"><div class="td">Stop 2</div><div class="tv">Marina 5</div></div>
+        <div class="t-point"><div class="td">Stop 3</div><div class="tv">Cozy Mall</div><div class="tp">Seashell</div></div>
+        <div class="t-point"><div class="td">Stop 4</div><div class="tv">Blumar</div><div class="tp">Sidi Abdul Rahman</div></div>
+        <div class="van-marker" id="van-marker"><img src="assets/van3d/side-en.png" alt="GIG Egypt Mobibus"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="media" class="section-pad light-on-dark">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--rose-gold)">Media Coverage</span>
+      <h2>On the ground at Sahel.</h2>
+    </div>
+
+    <div class="media-video-row">
+      <div class="brand-glass media-feature">
+        <span class="flabel">Featured &middot; Influencer Visit</span>
+        <video class="media-video" src="assets/media/influencer-visit.mp4" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="brand-glass media-feature">
+        <span class="flabel">GIG Promo &middot; I</span>
+        <video class="media-video" src="assets/media/promo-1.mp4" autoplay muted loop playsinline preload="auto"></video>
+      </div>
+      <div class="brand-glass media-feature">
+        <span class="flabel">GIG Promo &middot; II</span>
+        <video class="media-video" src="assets/media/promo-2.mp4" autoplay muted loop playsinline preload="auto"></video>
+      </div>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-arrow prev" id="carousel-prev" aria-label="Previous photos"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="carousel-arrow next" id="carousel-next" aria-label="Next photos"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="media-carousel" id="media-carousel">
+        <div class="media-tile"><img src="assets/media/photo1.jpg" alt="GIG Egypt Mobibus, on-site consultation at night"></div>
+        <div class="media-tile"><img src="assets/media/photo2.jpg" alt="GIG Egypt Mobibus"></div>
+        <div class="media-tile"><img src="assets/media/photo3.jpg" alt="GIG Egypt Mobibus, inside the branded mobile unit"></div>
+        <div class="media-tile"><img src="assets/media/photo4.jpg" alt="GIG Egypt Mobibus"></div>
+        <div class="media-tile"><img src="assets/media/photo5.jpg" alt="GIG Egypt Mobibus, visitors at the mobile unit"></div>
+        <div class="media-tile"><img src="assets/media/photo6.jpg" alt="GIG Egypt Mobibus"></div>
+        <div class="media-tile"><img src="assets/media/photo7.jpg" alt="GIG Egypt branded van, daytime at a North Coast resort"></div>
+        <div class="media-tile"><img src="assets/media/photo8.jpg" alt="GIG Egypt branded van outside Palma Bay Rotana"></div>
+        <div class="media-tile"><img src="assets/media/photo9.jpg" alt="GIG Egypt Mobibus, consultation inside the mobile unit"></div>
+      </div>
+      <div class="carousel-progress"><div class="carousel-progress-fill" id="carousel-progress-fill"></div></div>
+    </div>
+
+    <div class="media-links">
+      <a class="media-link" href="https://drive.google.com/file/d/1hywZGH1Jz5Em8B54bfzOPrufnE_UwYOx/view" target="_blank" rel="noopener">Watch Full Promo &#8599;</a>
+      <a class="media-link" href="https://drive.google.com/drive/folders/1PaZgYcI6q6tPN5pD9kdYuStK7gQzmOqH" target="_blank" rel="noopener">Full Media Archive &#8599;</a>
+    </div>
+  </div>
+</section>
+
 <section id="kpi" class="section-pad">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow" style="color:var(--rose-gold)">Audience Captured</span>
-      <h2>Every contact the Sahel activation brought in.</h2>
+      <h2>Every contact the Mobibus brought in.</h2>
     </div>
 
     <div class="kpi-grid">
@@ -491,7 +661,7 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow" style="color:var(--rose-gold)">From Contact to Contract</span>
-      <h2>What the Sahel leads converted into.</h2>
+      <h2>What the Mobibus leads converted into.</h2>
       <div class="brand-bar"></div>
       <p class="lede">Of the 271 dated leads, four converted into issued policies during the event window.</p>
     </div>
@@ -513,6 +683,27 @@
         <div class="t-point"><div class="td">17 Aug</div><div class="tv">1 policy</div><div class="tp">EGP 32,790</div></div>
         <div class="t-point"><div class="td">18 Aug</div><div class="tv">2 policies</div><div class="tp">EGP 5,000</div></div>
         <div class="t-point"><div class="td">20 Aug</div><div class="tv">1 policy</div><div class="tp">EGP 2,700</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-card brand-glass">
+      <h3>Policy types</h3>
+      <div class="ptype-list">
+        <div class="ptype-row">
+          <span class="ptype-swatch" style="background:var(--ocean)"></span>
+          <span class="ptype-name">Pet Insurance</span>
+          <span class="ptype-count num" data-count="1">0</span>
+        </div>
+        <div class="ptype-row">
+          <span class="ptype-swatch" style="background:var(--seafoam)"></span>
+          <span class="ptype-name">Motor Insurance</span>
+          <span class="ptype-count num" data-count="1">0</span>
+        </div>
+        <div class="ptype-row">
+          <span class="ptype-swatch" style="background:var(--sunrise)"></span>
+          <span class="ptype-name">Fire &amp; Burglary Insurance</span>
+          <span class="ptype-count num" data-count="2">0</span>
+        </div>
       </div>
     </div>
 
@@ -606,7 +797,7 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow" style="color:var(--rose-gold)">Search Demand</span>
-      <h2>The Sahel activation showed up in search.</h2>
+      <h2>Summer Campaign Mobibus 2026 spiked in Google Search.</h2>
       <p class="lede" style="color:var(--ink-soft);max-width:56ch;">Google Trends &middot; brand interest in Egypt, August 2026.</p>
     </div>
 
@@ -677,7 +868,7 @@
     <div class="closing-slogan">Invested in You.</div>
 
     <footer>
-      <span class="credit">Sahel Summer Activation &middot; August 2026</span>
+      <span class="credit">Mobibus Campaign &middot; August 2026</span>
     </footer>
   </div>
 </section>
@@ -728,11 +919,13 @@ var egyptPins = [
 /* ---------- nav scroll state ---------- */
 var nav = document.getElementById('topnav');
 var progressFill = document.getElementById('progress-fill');
+var navVan = document.getElementById('nav-van');
 window.addEventListener('scroll', function(){
   nav.classList.toggle('scrolled', window.scrollY > 40);
   var h = document.documentElement.scrollHeight - window.innerHeight;
   var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
   progressFill.style.width = pct + '%';
+  if (navVan) navVan.style.left = pct + '%';
 }, {passive:true});
 
 /* ---------- count-up ---------- */
@@ -762,7 +955,7 @@ document.querySelectorAll('[data-count]').forEach(function(el){
 });
 
 /* ---------- section reveals ---------- */
-gsap.utils.toArray('.kpi-tile, .conv-tile, .social-card, .finding, .class-row, .note-card').forEach(function(el, i){
+gsap.utils.toArray('.kpi-tile, .conv-tile, .social-card, .finding, .class-row, .note-card, .media-tile, .media-feature').forEach(function(el, i){
   gsap.fromTo(el, {opacity:0, y:26}, {
     opacity:1, y:0, duration:0.8, ease:'power3.out',
     delay: (i % 6) * 0.06,
@@ -775,6 +968,23 @@ gsap.utils.toArray('.section-head').forEach(function(el){
 gsap.utils.toArray('.closing-slogan').forEach(function(el){
   gsap.fromTo(el, {opacity:0, y:20}, {opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 92%'}});
 });
+/* tiny 3D van drives along the route line as the section scrolls */
+(function(){
+  var marker = document.getElementById('van-marker');
+  if (!marker) return;
+  gsap.set(marker, {left:'0%'});
+  if (reduceMotion) { gsap.set(marker, {left:'75%'}); return; }
+  gsap.to(marker, {
+    left:'75%',
+    ease:'none',
+    scrollTrigger:{
+      trigger:'#route-timeline',
+      start:'top 95%',
+      end:'top 15%',
+      scrub:0.6
+    }
+  });
+})();
 
 /* ---------- hero parallax ---------- */
 if (!reduceMotion){
@@ -1022,6 +1232,72 @@ document.querySelectorAll('.kpi-tile, .conv-tile').forEach(function(card){
   });
 })();
 
+/* ================= media photo carousel ================= */
+(function(){
+  var track = document.getElementById('media-carousel');
+  var prev = document.getElementById('carousel-prev');
+  var next = document.getElementById('carousel-next');
+  var fill = document.getElementById('carousel-progress-fill');
+  if (!track) return;
+
+  function tileStep(){
+    var tile = track.querySelector('.media-tile');
+    if (!tile) return 300;
+    var style = getComputedStyle(track);
+    var gap = parseFloat(style.columnGap || style.gap || 16);
+    return tile.getBoundingClientRect().width + gap;
+  }
+  function updateProgress(){
+    var max = track.scrollWidth - track.clientWidth;
+    var pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+    fill.style.width = Math.max(8, Math.min(100, pct)) + '%';
+  }
+  prev.addEventListener('click', function(){ pauseAuto(); track.scrollBy({left: -tileStep(), behavior:'smooth'}); });
+  next.addEventListener('click', function(){ pauseAuto(); track.scrollBy({left: tileStep(), behavior:'smooth'}); });
+  track.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  /* gentle auto-advance, pauses on interaction, respects reduced motion */
+  var autoTimer = null, resumeTimer = null;
+  function autoStep(){
+    var max = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= max - 4) {
+      track.scrollTo({left: 0, behavior:'smooth'});
+    } else {
+      track.scrollBy({left: tileStep(), behavior:'smooth'});
+    }
+  }
+  function startAuto(){
+    if (reduceMotion || autoTimer) return;
+    autoTimer = setInterval(autoStep, 3200);
+  }
+  function stopAuto(){
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+  function pauseAuto(){
+    stopAuto();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAuto, 5000);
+  }
+  track.addEventListener('pointerdown', pauseAuto);
+  track.addEventListener('wheel', pauseAuto, {passive:true});
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', function(){ if (!resumeTimer) startAuto(); });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { if (!resumeTimer) startAuto(); }
+        else { stopAuto(); clearTimeout(resumeTimer); resumeTimer = null; }
+      });
+    }, {threshold: 0.35});
+    io.observe(track);
+  } else {
+    startAuto();
+  }
+})();
+
 /* ================= social thermometers ================= */
 gsap.utils.toArray('.therm i').forEach(function(el){
   var fill = el.getAttribute('data-fill');
@@ -1079,4 +1355,7 @@ function makeParticles(canvasId, opts){
 }
 makeParticles('hero-particles', {count:46, color:'rgba(255,255,255,0.75)'});
 makeParticles('closing-particles', {count:34, color:'rgba(210,140,100,0.6)'});
+
+/* keep scroll-trigger positions accurate once images/video below the fold finish loading */
+window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
 </script>
