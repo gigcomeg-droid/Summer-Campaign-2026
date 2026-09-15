@@ -273,20 +273,6 @@
   .ptype-swatch{width:12px;height:12px;border-radius:4px;flex:none;}
   .ptype-name{font-weight:600;color:#fff;flex:1;}
   .ptype-count{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;width:36px;text-align:right;}
-  .data-note{
-    margin:20px 0 0;
-    padding:16px 20px;
-    border-radius:12px;
-    background:rgba(210,140,100,0.16);
-    border:1px solid rgba(210,140,100,0.4);
-    border-left:3px solid var(--rose-gold);
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.8rem;
-    line-height:1.65;
-    color:rgba(255,255,255,0.92);
-    max-width:68ch;
-  }
-  .data-note b{color:var(--rose-gold);}
   .timeline{display:flex;gap:0;position:relative;}
   .timeline::before{
     content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:rgba(255,255,255,0.3);
@@ -501,7 +487,7 @@
     #hero{min-height:auto;padding-bottom:20px;}
     section{break-before:page;}
     #hero{break-before:auto;}
-    .glass,.brand-glass,.kpi-tile,.conv-tile,.social-card,.region-row,.finding,.stack-card,.chart-card,.timeline-card,.data-note,.demand-grid > *,.media-feature,.media-tile,.t-point{break-inside:avoid;}
+    .glass,.brand-glass,.kpi-tile,.conv-tile,.social-card,.region-row,.finding,.stack-card,.chart-card,.timeline-card,.demand-grid > *,.media-feature,.media-tile,.t-point{break-inside:avoid;}
     .media-carousel{display:grid !important;grid-template-columns:repeat(3,1fr);overflow:visible !important;}
     .media-carousel .media-tile{width:auto !important;}
     .carousel-arrow,.carousel-progress{display:none !important;}
@@ -588,7 +574,7 @@
         <div class="media-tile"><img src="assets/media/photo6.jpg" alt="GIG-Egypt Mobibus"></div>
         <div class="media-tile"><img src="assets/media/photo7.jpg" alt="GIG-Egypt branded van, daytime at a North Coast resort"></div>
         <div class="media-tile"><img src="assets/media/photo8.jpg" alt="GIG-Egypt branded van outside Palma Bay Rotana"></div>
-        <div class="media-tile"><img src="assets/media/photo9.jpg" alt="GIG-Egypt Mobibus, consultation inside the mobile unit"></div>
+        <div class="media-tile"><img src="assets/media/photo10.jpg" alt="GIG-Egypt Mobibus, visitors gathered at the van window"></div>
       </div>
       <div class="carousel-progress"><div class="carousel-progress-fill" id="carousel-progress-fill"></div></div>
     </div>
@@ -643,16 +629,16 @@
       <span class="eyebrow" style="color:var(--rose-gold)">From Contact to Contract</span>
       <h2>What the Mobibus leads converted into.</h2>
       <div class="brand-bar"></div>
-      <p class="lede">Of the 271 dated leads, four converted into issued policies during the event window.</p>
+      <p class="lede">Of the 271 dated leads, six converted into issued policies during the event window.</p>
     </div>
 
     <div class="conv-grid">
       <div class="conv-tile brand-glass">
-        <div class="num" data-count="4">0</div>
+        <div class="num" data-count="6">0</div>
         <div class="lbl">Issued Policies</div>
       </div>
       <div class="conv-tile brand-glass">
-        <div class="num" data-count="40490" data-format="comma">0</div>
+        <div class="num" data-count="45890" data-format="comma">0</div>
         <div class="lbl">Premiums (EGP)</div>
       </div>
     </div>
@@ -672,7 +658,7 @@
         <div class="ptype-row">
           <span class="ptype-swatch" style="background:var(--ocean)"></span>
           <span class="ptype-name">Pet Insurance</span>
-          <span class="ptype-count num" data-count="1">0</span>
+          <span class="ptype-count num" data-count="3">0</span>
         </div>
         <div class="ptype-row">
           <span class="ptype-swatch" style="background:var(--seafoam)"></span>
@@ -686,8 +672,6 @@
         </div>
       </div>
     </div>
-
-    <p class="data-note"><b>Note:</b> The remaining data related to policies and premium amounts has been excluded from this slide due to missing inputs from the collection team.</p>
   </div>
 </section>
 
